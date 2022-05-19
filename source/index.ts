@@ -30,6 +30,10 @@ import ensureOnline from './ensure-online';
 import {setUpMenuBarMode} from './menu-bar-mode';
 import {caprineIconPath} from './constants';
 
+// impotr titlebar from electron-titlebar-windows
+// @ts-ignore
+import ElectronTitlebarWindows = require('electron-titlebar-windows');
+
 ipcMain.setMaxListeners(100);
 
 electronDebug({
@@ -303,6 +307,10 @@ function createMainWindow(): BrowserWindow {
 			enableRemoteModule: true
 		}
 	});
+
+  	const titlebar = new ElectronTitlebarWindows(true, "#ffffff", "#242526");
+
+	titlebar.appendTo();
 
 	setUserLocale();
 	initRequestsFiltering();
